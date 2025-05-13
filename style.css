@@ -1,0 +1,280 @@
+/* Apply Inter font globally */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #1a1a1a; /* Dark background */
+    color: #e0e0e0; /* Light grey text */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Custom gradient for hero */
+.hero-gradient {
+    background: linear-gradient(180deg, rgba(26, 26, 26, 0) 0%, rgba(26, 26, 26, 0.8) 70%, rgba(26, 26, 26, 1) 100%);
+}
+
+/* Hero Parallax styles */
+#hero {
+    perspective: 1000px; /* Enable 3D perspective for parallax layers */
+}
+.parallax-bg {
+    /* Base background gradient remains */
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1); /* Smooth transition for parallax */
+}
+.parallax-layer {
+    /* Layers for parallax */
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1); /* Smooth transition for parallax */
+}
+
+/* Style for section headings */
+h2 {
+    font-size: 2.5rem; /* Large headings */
+    font-weight: 700;
+    margin-bottom: 2rem; /* Increased margin */
+    color: #ffffff; /* White headings */
+    text-align: center;
+}
+
+/* Style for body text */
+p {
+    line-height: 1.7; /* Improve readability */
+    margin-bottom: 1rem;
+    color: #b0b0b0; /* Slightly softer grey */
+}
+
+/* Card styling */
+.info-card {
+    background-color: rgba(255, 255, 255, 0.03); /* Slightly lighter dark bg */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+    padding: 1.5rem;
+    border-radius: 0.75rem; /* Rounded corners */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    opacity: 0; /* Start hidden for animation */
+    transform: translateY(20px); /* Start slightly lower */
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+.info-card:hover {
+    transform: translateY(-5px) scale(1.02); /* Add slight scale */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    background-color: rgba(255, 255, 255, 0.07);
+}
+
+/* Replaced placeholder SVG styles with general image container styles */
+.section-image-container {
+    background-color: #2a2a2a; /* Dark grey placeholder bg */
+    border-radius: 0.5rem; /* Rounded corners */
+    overflow: hidden; /* Clip image content */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.section-image {
+    display: block; /* Remove extra space below image */
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure images cover the area */
+    transition: transform 0.4s ease;
+}
+.section-image-container:hover .section-image {
+    transform: scale(1.05); /* Subtle zoom on hover */
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Header link styling */
+.nav-link {
+    position: relative;
+    color: #b0b0b0;
+    transition: color 0.3s ease;
+    padding-bottom: 4px; /* Space for underline */
+    font-size: 0.9rem;
+}
+.nav-link:hover {
+    color: #ffffff;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffffff;
+    transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Tickets button specific styling */
+.tickets-button {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.tickets-button:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #1a1a1a;
+    border-color: #fff;
+}
+.tickets-button::after {
+    display: none; /* Remove underline effect */
+}
+
+/* Hero Tickets CTA button */
+.tickets-cta {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.tickets-cta:hover {
+    transform: scale(1.05);
+}
+
+/* Footer Social Icons */
+.social-icon {
+    color: #888; /* Default icon color */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+.social-icon:hover {
+    color: #fff;
+    transform: scale(1.1);
+}
+
+/* Contact/Collaborate Form Styling */
+.form-input {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 0.375rem; /* Tailwind's rounded-md */
+    padding: 0.75rem 1rem;
+    color: #e0e0e0;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+.form-input::placeholder {
+    color: #777;
+}
+.form-input:focus {
+    outline: none;
+    border-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+.form-button {
+    background-color: #ffffff;
+    color: #1a1a1a;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px; /* Tailwind's rounded-full */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+.form-button:hover {
+    background-color: #d0d0d0;
+    transform: scale(1.03);
+}
+
+/* Merch Store Section Styling */
+.merch-card {
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden; /* Ensure image zoom doesn't overflow card */
+}
+.merch-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+.merch-image {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Square images */
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem; /* Space below image */
+    transition: transform 0.4s ease;
+}
+.merch-card:hover .merch-image {
+     transform: scale(1.05); /* Zoom image on card hover */
+}
+.store-button {
+    display: inline-block;
+    margin-top: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.store-button:hover {
+    background-color: #ffffff;
+    color: #1a1a1a;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.animate-fade-in {
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Section fade-in on scroll */
+.section-fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.section-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animated Gradient Background for Hero */
+.animated-gradient {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Mobile Ad */
+#mobile-ad {
+    position: sticky;
+    bottom: 0;
+    z-index: 100;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.3);
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+@media (min-width: 768px) {
+    #mobile-ad {
+        display: none;
+    }
+}
