@@ -1,4 +1,4 @@
-# Firebase Studio
+# ataxia
 
 This is a NextJS starter in Firebase Studio.
 
