@@ -17,12 +17,18 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Loader2 } from "lucide-react";
+import { Loader2, Save } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
+import { savePlaylistToDb } from "@/lib/db";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function PlaylistGeneratorForm() {
   const [playlistResult, setPlaylistResult] = useState<GeneratePlaylistOutput | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { user } = useAuth();
+  const { toast } = useToast();
 
   const form = useForm<PlaylistGeneratorValues>({
     resolver: zodResolver(playlistGeneratorSchema),
@@ -44,6 +50,31 @@ export default function PlaylistGeneratorForm() {
       setError(err instanceof Error ? err.message : "An unknown error occurred.");
     } finally {
       setIsLoading(false);
+    }
+  }
+
+  async function handleSave() {
+    if (!user || !playlistResult) return;
+    setIsSaving(true);
+    try {
+      const values = form.getValues();
+      await savePlaylistToDb(user.uid, {
+        playlist: playlistResult.playlist,
+        genres: values.genres,
+        artists: values.artists
+      });
+      toast({
+        title: "Playlist Saved",
+        description: "Your generated playlist has been saved to your profile.",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to save playlist. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSaving(false);
     }
   }
 
@@ -107,16 +138,27 @@ export default function PlaylistGeneratorForm() {
 
       {playlistResult && (
         <Card>
-          <CardHeader>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle>Your Generated Playlist</CardTitle>
+            {user && (
+              <Button variant="outline" size="sm" onClick={handleSave} disabled={isSaving}>
+                {isSaving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Save className="mr-2 h-4 w-4" />}
+                Save to Profile
+              </Button>
+            )}
           </CardHeader>
           <CardContent>
             <Textarea
               readOnly
               value={playlistResult.playlist}
               rows={15}
-              className="text-sm bg-muted/50"
+              className="text-sm bg-muted/50 mt-4"
             />
+            {!user && (
+              <p className="text-sm text-muted-foreground mt-2 text-center">
+                <a href="/login" className="underline text-accent">Log in</a> to save this playlist.
+              </p>
+            )}
           </CardContent>
         </Card>
       )}
