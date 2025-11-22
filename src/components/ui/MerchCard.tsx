@@ -10,9 +10,14 @@ interface MerchItem {
   dataAiHint?: string;
 }
 
-export default function MerchCard({ item }: { item: MerchItem }) {
+interface MerchCardProps {
+  item: MerchItem;
+  onAddToCart?: () => void;
+}
+
+export default function MerchCard({ item, onAddToCart }: MerchCardProps) {
   return (
-    <Card className="bg-card/30 backdrop-blur-md shadow-lg text-center merch-card-hover">
+    <Card className="bg-card/30 backdrop-blur-md shadow-lg text-center merch-card-hover flex flex-col h-full">
       <CardHeader className="p-0">
         <div className="aspect-square relative w-full rounded-t-lg overflow-hidden">
            {/* data-ai-hint provided dynamically */}
@@ -25,12 +30,16 @@ export default function MerchCard({ item }: { item: MerchItem }) {
           />
         </div>
       </CardHeader>
-      <CardContent className="pt-4">
+      <CardContent className="pt-4 flex-grow">
         <CardTitle className="text-xl font-semibold text-foreground">{item.title}</CardTitle>
         <p className="text-muted-foreground mt-1">{item.price}</p>
       </CardContent>
       <CardFooter>
-        <Button variant="outline" className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground">
+        <Button
+          variant="outline"
+          className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground"
+          onClick={onAddToCart}
+        >
           Add to Cart
         </Button>
       </CardFooter>

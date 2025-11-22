@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import AudioPlayer from '@/components/AudioPlayer';
+import Providers from '@/components/Providers';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -24,13 +25,15 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${inter.variable} font-sans antialiased flex flex-col min-h-screen`}>
-        <Header />
-        <main className="flex-grow">
-          {children}
-        </main>
-        <AudioPlayer src="/audio/placeholder-track.mp3" />
-        <Footer />
-        <Toaster />
+        <Providers>
+          <Header />
+          <main className="flex-grow">
+            {children}
+          </main>
+          <AudioPlayer src="/audio/placeholder-track.mp3" />
+          <Footer />
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );
